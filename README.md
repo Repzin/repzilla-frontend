@@ -1,35 +1,28 @@
-# React + TypeScript + Vite
+# Repzin
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A mobile-first gym management demo built with React, TypeScript, Vite, Tailwind CSS, shadcn-style UI primitives, and Lucide icons.
 
-Currently, two official plugins are available:
+## Run
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- `npm install`
+- `npm run dev`
+- `npm run build` for the production bundle
+- `npm run lint` for source checks
 
-## React Compiler
+## Screens
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- `/`: daily attendance, membership filters, member search, and quick actions
+- `/members/:id`: member attendance calendar, four status filters, and payment history
+- `/add`: shared action launcher
+- `/gym`: metrics, published/draft packages, and team
+- `/members/new`: member details, simulated biometric capture, and confirmation
+- `/packages/new`: package creation with draft/published status
+- `/payments/new`: member search, package selection, calculated membership dates, and payment recording
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+Member, package, payment, and theme changes persist in browser local storage using `repzin-` keys. Clear these keys to reset the demo. Historical attendance is illustrative; registration does not create a check-in. Biometric scanning is simulated. No API calls or authentication are implemented.
 
-## Expanding the Oxlint configuration
+The app uses one shared route per action flow, regardless of entry point. Theme tokens in `src/index.css` cover light and dark mode. Shared Button primitives are in `src/components/ui`; `components.json` and the `@/` alias support adding further shadcn components.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+Production hosting must serve `index.html` for application routes (SPA fallback).
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Build and lint were checked. Visual testing was intentionally omitted.
