@@ -280,7 +280,6 @@ function QuickActions() {
         <IconBox icon={UserPlus} />
         <div>
           <strong>Add member</strong>
-          <span>A new beginning</span>
         </div>
         <ArrowRight size={18} />
       </Link>
@@ -288,7 +287,6 @@ function QuickActions() {
         <IconBox icon={Wallet} />
         <div>
           <strong>Add payment</strong>
-          <span>Keep them moving</span>
         </div>
         <ArrowRight size={18} />
       </Link>
@@ -350,16 +348,11 @@ function Dashboard({ members }: { members: Member[] }) {
           day: "numeric",
           month: "long",
         })}
-        title="A stronger day starts here."
-        description="Your gym, in good shape. Let’s keep it that way."
+        title="Quick Actions"
       />
-      <SectionTitle title="Quick actions" />
       <QuickActions />
       <section className="section">
-        <SectionTitle
-          title="Today’s attendance"
-          detail="Every check-in is a little progress."
-        >
+        <SectionTitle title="Today’s attendance">
           <span className="live-badge">
             <i /> Live overview
           </span>
@@ -427,9 +420,7 @@ function Dashboard({ members }: { members: Member[] }) {
               <p>Try another name or attendance filter.</p>
             </div>
           )}
-          <div className="list-footer">
-            <ShieldCheck size={15} /> Membership status at a glance
-          </div>
+          <div className="list-footer"></div>
         </div>
       </section>
       <div className="dashboard-summary">
@@ -437,15 +428,15 @@ function Dashboard({ members }: { members: Member[] }) {
           icon={Users}
           label="Checked in today"
           value={String(attendance.length)}
-          note="Small steps. Stronger community."
+          note=""
         />
-        <div className="brand-note">
-          <Sparkles size={24} />
-          <div>
-            <strong>Built on consistency.</strong>
-            <p>One rep. One day. One stronger you.</p>
-          </div>
-        </div>
+        {/* <div className="brand-note"> */}
+        {/*   <Sparkles size={24} /> */}
+        {/*   <div> */}
+        {/*     <strong>Built on consistency.</strong> */}
+        {/*     <p>One rep. One day. One stronger you.</p> */}
+        {/*   </div> */}
+        {/* </div> */}
       </div>
     </>
   );
@@ -453,21 +444,16 @@ function Dashboard({ members }: { members: Member[] }) {
 function Actions() {
   return (
     <>
-      <PageHeading
-        eyebrow="MAKE YOUR NEXT MOVE"
-        title="A little action. A big difference."
-        description="Everything you need to keep your gym moving."
-      />
-      <SectionTitle title="Member essentials" />
+      <PageHeading eyebrow="Add new entities to the gym." title="Add +" />
+      <SectionTitle title="Members" />
       <QuickActions />
       <section className="section">
-        <SectionTitle title="Build your gym" />
+        <SectionTitle title="Your gym" />
         <div className="action-grid">
           <Link to="/packages/new" className="panel large-action">
             <IconBox icon={Dumbbell} />
             <div>
               <h3>Add a package</h3>
-              <p>Create a plan that fits your members.</p>
             </div>
             <ArrowRight size={20} />
           </Link>
@@ -475,7 +461,6 @@ function Actions() {
             <IconBox icon={Users} />
             <div>
               <h3>Add an employee</h3>
-              <p>More hands. More possibilities.</p>
             </div>
             <span className="neutral-pill">Coming soon</span>
           </div>
@@ -501,8 +486,8 @@ function Gym({
     <>
       <PageHeading
         eyebrow="YOUR SPACE TO GROW"
-        title="Your gym. Your community."
-        description="A good place to get stronger, together."
+        title="placeholder: Gym name"
+        description=""
       />
       <QuickActions />
       <section className="section">
@@ -512,7 +497,7 @@ function Gym({
             icon={Users}
             label="Active members"
             value={String(members.filter((m) => m.paid).length)}
-            note={`${members.length} members in your community`}
+            note={`${members.length} members in your gym`}
           />
           <StatCard
             icon={Wallet}
@@ -526,10 +511,7 @@ function Gym({
         </div>
       </section>
       <section className="section">
-        <SectionTitle
-          title="Membership packages"
-          detail="A plan for every kind of progress."
-        >
+        <SectionTitle title="Membership packages" detail="">
           <Button asChild variant="secondary">
             <Link to="/packages/new">
               <Plus size={16} /> Add package
@@ -583,10 +565,7 @@ function Gym({
         </div>
       </section>
       <section className="section">
-        <SectionTitle
-          title="Your team"
-          detail="The people behind the progress."
-        />
+        <SectionTitle title="Your team" detail="" />
         <div className="panel team-list">
           {[
             { name: "Anjana Perera", role: "Gym owner", initials: "AP" },
@@ -685,7 +664,7 @@ function MemberAttendance({
       </div>
       <section className="section">
         <SectionTitle
-          title="Consistency, on the calendar"
+          title="Attendance, on the calendar"
           detail="Select a day to see its attendance status."
         />
         <Chips
@@ -1064,18 +1043,7 @@ function AddPackage({ onAdd }: { onAdd: (pack: Package) => void }) {
   const [price, setPrice] = useState("");
   const [publish, setPublish] = useState(true);
   return (
-    <FlowLayout
-      title={
-        done
-          ? "A new way to get stronger."
-          : "Good progress starts with a plan."
-      }
-      subtitle={
-        done
-          ? "Your membership package is ready."
-          : "Create a membership package for your community."
-      }
-    >
+    <FlowLayout title={"Add new membership package."} subtitle={""}>
       {done ? (
         <Success
           title="Package created"
@@ -1200,11 +1168,9 @@ function AddPayment({
   const end = Number.isNaN(endDate.getTime()) ? "" : isoDate(endDate);
   return (
     <FlowLayout
-      title={done ? "Another month of momentum." : "Keep their momentum going."}
+      title={"Add payment."}
       subtitle={
-        done
-          ? "Payment recorded. Progress continues."
-          : "Add a membership payment in a few simple steps."
+        done ? "Payment recorded." : "Add a membership and other payments"
       }
     >
       {done ? (
@@ -1469,7 +1435,7 @@ function AppShell() {
           </Link>
           <div className="header-right">
             <span className="gym-label">
-              <span /> The daily grind, made better.
+              <span />
             </span>
             <Button
               variant="ghost"
@@ -1535,8 +1501,7 @@ function AppShell() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <footer className="page-footer">
-          <Dumbbell size={14} /> A little stronger, every day.
-          <span>REPZIN · DEMO</span>
+          <span>REPZIN</span>
         </footer>
       </main>
       <nav className="bottom-nav" aria-label="Main navigation">
